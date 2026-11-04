@@ -1,181 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Answers to common questions about reporting, tracking and donating surplus food with Barangay Bagsakan.">
+    <meta name="theme-color" content="#ffffff">
     <title>FAQ | Barangay Bagsakan</title>
-    <link rel="stylesheet" href="faq.css">
-</head>
+
+    <!-- Bootstrap 5: grid, navbar (hamburger menu) and accordion -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- One typeface for the whole site: Schibsted Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+  </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header">
-        <div class="nav-bar">
-            <a class="brand" href="index.html">
-                <span class="brand-logo" aria-hidden="true">B</span>
-                Barangay Bagsakan
-            </a>
+    <!-- ========== 1. NAVIGATION ========== -->
+    <!-- Below 992px the links fold into the hamburger menu. -->
+    <header class="site-header sticky-top">
+      <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+        <div class="container">
+          <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" />
+              <path d="M8 13h16l-2 10H10z" />
+              <path d="M12 13l4-5 4 5" />
+            </svg>
+            Barangay Bagsakan
+          </a>
 
-            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle navigation menu">&#9776;</button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Open menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
 
-            <nav class="main-nav" id="mainNav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="report.html">Report</a></li>
-                    <li><a href="track.html">Track</a></li>
-                    <li><a href="faq.html" class="active">FAQ</a></li>
-                    <li><a href="#" class="login-link">Login</a></li>
-                </ul>
-            </nav>
+          <div class="collapse navbar-collapse" id="main-menu">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+              <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="faq.html">FAQ</a></li>
+              <li class="nav-item nav-actions">
+                <a class="btn btn-outline" href="login.html">Log in</a>
+                <a class="btn btn-nav-primary" href="register.html">Register</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </nav>
     </header>
 
-    <main>
-        <section class="page-hero">
-            <div class="container hero-row">
-                <h1>Frequently Asked Questions</h1>
-                <form class="faq-search" id="faqSearchForm" role="search">
-                    <label for="faqSearch" class="visually-hidden">Search questions</label>
-                    <input type="search" id="faqSearch" placeholder="Search questions..." autocomplete="off">
-                </form>
+    <main id="main">
+
+      <section class="hero page-intro" aria-labelledby="faq-title">
+        <div class="container">
+          <div class="row align-items-end gy-4">
+            <div class="col-lg-7">
+              <h1 class="hero-title" id="faq-title">Frequently asked questions</h1>
+              <p class="hero-text">What to report, how to track it, and what happens after you do.</p>
             </div>
-        </section>
+            <div class="col-lg-5">
+              <form class="faq-search" id="faqSearchForm" role="search">
+                <label for="faqSearch">Search questions</label>
+                <input class="form-control" type="search" id="faqSearch" placeholder="e.g. photo, expiry, track" autocomplete="off">
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section class="container faq-layout">
+      <section class="section" aria-label="Questions and answers">
+        <div class="container">
+          <div class="row gy-5">
 
-            <aside class="topics" aria-label="FAQ topics">
-                <h2 class="topics-title">Topics</h2>
-                <ul>
-                    <li><a href="#donate">What can I donate?</a></li>
-                    <li><a href="#reporting">Reporting</a></li>
-                    <li><a href="#tracking">Tracking</a></li>
-                    <li><a href="#safety">Pickup and safety</a></li>
-                    <li><a href="#privacy">Privacy</a></li>
-                </ul>
+            <aside class="col-lg-3" aria-label="FAQ topics">
+              <div class="topics">
+                <h2 class="side-title">Topics</h2>
+                <ul class="topic-links">
+                  <li><a href="#donate">What can I donate?</a></li>
+                  <li><a href="#reporting">Reporting</a></li>
+                  <li><a href="#tracking">Tracking</a></li>
+                  <li><a href="#safety">Pickup and safety</a></li>
+                  <li><a href="#privacy">Privacy</a></li>
+                  </ul>
+              </div>
             </aside>
 
-            <div class="faq-content">
+            <div class="col-lg-9 faq-content">
 
-                <section class="faq-topic" id="donate">
-                    <h2 class="topic-heading">What can I donate?</h2>
-
-                    <details class="faq-item" open>
-                        <summary>What food can NOT be donated?</summary>
-                        <p>Expired, spoiled, or opened food. Staff check every report before pickup.</p>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>What types of food can I report?</summary>
-                        <p>Cooked meals, fruits and vegetables, bread and pastries, rice and grains, canned and packaged goods, dairy and eggs, meat and seafood, and other edible surplus food.</p>
-                    </details>
-                </section>
-
-                <section class="faq-topic" id="reporting">
-                    <h2 class="topic-heading">Reporting</h2>
-
-                    <details class="faq-item">
-                        <summary>How do I report surplus food?</summary>
-                        <p>Click Report Surplus Food, fill in the food details, expiry date, and pickup address, add a photo, confirm the food is safe and not expired, then submit your report.</p>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>Is the expiry date required?</summary>
-                        <p>Yes. The expiry date and the safety confirmation are required so unusable food never reaches staff.</p>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>Do I need to add a photo?</summary>
-                        <p>A photo is optional, but it helps staff check your food faster. Use one JPG, PNG, or WEBP file, up to 5 MB.</p>
-                    </details>
-                </section>
-
-                <section class="faq-topic" id="tracking">
-                    <h2 class="topic-heading">Tracking</h2>
-
-                    <details class="faq-item">
-                        <summary>How do I track my report?</summary>
-                        <p>Open the Track page and enter the reference number you received after submitting, for example BB-2026-001.</p>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>What does &ldquo;Under Review&rdquo; mean?</summary>
-                        <p>Barangay staff received your report and are checking the food details and safety before arranging pickup.</p>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>What if my report is rejected?</summary>
-                        <p>The status changes to Rejected and the reason is shown on your report. You will be notified, and you may correct the information and submit a new report.</p>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>What if my report says &ldquo;Requires More Info&rdquo;?</summary>
-                        <p>Staff need something more from you, such as a clearer photo. Click Update report, add the missing information, and the status goes back to Under Review.</p>
-                    </details>
-                </section>
-
-                <section class="faq-topic" id="safety">
-                    <h2 class="topic-heading">Pickup and safety</h2>
-
-                    <details class="faq-item">
-                        <summary>Who checks my food?</summary>
-                        <p>Authorized barangay staff review every report and verify that the food is safe before pickup is arranged.</p>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>Who picks up the food?</summary>
-                        <p>Barangay staff coordinate the collection and connect the food with families or partner organizations who need it.</p>
-                    </details>
-                </section>
-
-                <section class="faq-topic" id="privacy">
-                    <h2 class="topic-heading">Privacy</h2>
-
-                    <details class="faq-item">
-                        <summary>How is my personal information used?</summary>
-                        <p>Your name, email, and contact number are used only to process your report and send you status updates.</p>
-                    </details>
-                </section>
-
-                <p class="no-results" id="noResults" hidden>No questions match your search. Try a different keyword.</p>
-
-            </div>
-        </section>
-
-        <section class="contact-band">
-            <div class="container band-row">
-                <div>
-                    <h2>Still stuck?</h2>
-                    <p>Barangay office hours, phone, and email.</p>
+              <section class="faq-topic" id="donate" aria-labelledby="donate-title">
+                <h2 class="topic-heading" id="donate-title">What can I donate?</h2>
+                <div class="accordion accordion-flush faq" id="acc-donate">
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1" aria-expanded="false" aria-controls="faq-1">What food can NOT be donated?</button>
+                    </h3>
+                    <div id="faq-1" class="accordion-collapse collapse" data-bs-parent="#acc-donate">
+                      <div class="accordion-body">Expired, spoiled, or opened food. Staff check every report before pickup.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-2" aria-expanded="false" aria-controls="faq-2">What types of food can I report?</button>
+                    </h3>
+                    <div id="faq-2" class="accordion-collapse collapse" data-bs-parent="#acc-donate">
+                      <div class="accordion-body">Cooked meals, fruits and vegetables, bread and pastries, rice and grains, canned and packaged goods, dairy and eggs, meat and seafood, and other edible surplus food.</div>
+                    </div>
+                  </div>
                 </div>
-                <a class="btn-orange" href="mailto:hello@bagsakan.barangay.ph">Contact us</a>
+              </section>
+
+              <section class="faq-topic" id="reporting" aria-labelledby="reporting-title">
+                <h2 class="topic-heading" id="reporting-title">Reporting</h2>
+                <div class="accordion accordion-flush faq" id="acc-reporting">
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-3" aria-expanded="false" aria-controls="faq-3">How do I report surplus food?</button>
+                    </h3>
+                    <div id="faq-3" class="accordion-collapse collapse" data-bs-parent="#acc-reporting">
+                      <div class="accordion-body">Click Report Surplus Food, fill in the food details, expiry date, and pickup address, add a photo, confirm the food is safe and not expired, then submit your report.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-4" aria-expanded="false" aria-controls="faq-4">Is the expiry date required?</button>
+                    </h3>
+                    <div id="faq-4" class="accordion-collapse collapse" data-bs-parent="#acc-reporting">
+                      <div class="accordion-body">Yes. The expiry date and the safety confirmation are required so unusable food never reaches staff.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-5" aria-expanded="false" aria-controls="faq-5">Do I need to add a photo?</button>
+                    </h3>
+                    <div id="faq-5" class="accordion-collapse collapse" data-bs-parent="#acc-reporting">
+                      <div class="accordion-body">A photo is optional, but it helps staff check your food faster. Use one JPG, PNG, or WEBP file, up to 5 MB.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="faq-topic" id="tracking" aria-labelledby="tracking-title">
+                <h2 class="topic-heading" id="tracking-title">Tracking</h2>
+                <div class="accordion accordion-flush faq" id="acc-tracking">
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-6" aria-expanded="false" aria-controls="faq-6">How do I track my report?</button>
+                    </h3>
+                    <div id="faq-6" class="accordion-collapse collapse" data-bs-parent="#acc-tracking">
+                      <div class="accordion-body">Open the Track page and enter the reference number you received after submitting, for example BB-2026-001.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-7" aria-expanded="false" aria-controls="faq-7">What does &ldquo;Under Review&rdquo; mean?</button>
+                    </h3>
+                    <div id="faq-7" class="accordion-collapse collapse" data-bs-parent="#acc-tracking">
+                      <div class="accordion-body">Barangay staff received your report and are checking the food details and safety before arranging pickup.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-8" aria-expanded="false" aria-controls="faq-8">What if my report is rejected?</button>
+                    </h3>
+                    <div id="faq-8" class="accordion-collapse collapse" data-bs-parent="#acc-tracking">
+                      <div class="accordion-body">The status changes to Rejected and the reason is shown on your report. You will be notified, and you may correct the information and submit a new report.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-9" aria-expanded="false" aria-controls="faq-9">What if my report says &ldquo;Requires More Info&rdquo;?</button>
+                    </h3>
+                    <div id="faq-9" class="accordion-collapse collapse" data-bs-parent="#acc-tracking">
+                      <div class="accordion-body">Staff need something more from you, such as a clearer photo. Click Update report, add the missing information, and the status goes back to Under Review.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="faq-topic" id="safety" aria-labelledby="safety-title">
+                <h2 class="topic-heading" id="safety-title">Pickup and safety</h2>
+                <div class="accordion accordion-flush faq" id="acc-safety">
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-10" aria-expanded="false" aria-controls="faq-10">Who checks my food?</button>
+                    </h3>
+                    <div id="faq-10" class="accordion-collapse collapse" data-bs-parent="#acc-safety">
+                      <div class="accordion-body">Authorized barangay staff review every report and verify that the food is safe before pickup is arranged.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-11" aria-expanded="false" aria-controls="faq-11">Who picks up the food?</button>
+                    </h3>
+                    <div id="faq-11" class="accordion-collapse collapse" data-bs-parent="#acc-safety">
+                      <div class="accordion-body">Barangay staff coordinate the collection and connect the food with families or partner organizations who need it.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="faq-topic" id="privacy" aria-labelledby="privacy-title">
+                <h2 class="topic-heading" id="privacy-title">Privacy</h2>
+                <div class="accordion accordion-flush faq" id="acc-privacy">
+                  <div class="accordion-item faq-item">
+                    <h3 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-12" aria-expanded="false" aria-controls="faq-12">How is my personal information used?</button>
+                    </h3>
+                    <div id="faq-12" class="accordion-collapse collapse" data-bs-parent="#acc-privacy">
+                      <div class="accordion-body">Your name, email, and contact number are used only to process your report and send you status updates.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <p class="no-results" id="noResults" hidden>No questions match your search. Try a different keyword.</p>
             </div>
-        </section>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tinted" aria-labelledby="stuck-title">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title" id="stuck-title">Still stuck?</h2>
+              <p class="section-lead">Reach the barangay office for hours, phone and email.</p>
+            </div>
+            <a class="btn btn-primary-solid" href="index.html#contact">Contact the barangay</a>
+          </div>
+        </div>
+      </section>
+
     </main>
 
+    <!-- ========== 9. FOOTER ========== -->
+    <!-- Copy this whole <footer> into every page so it stays the same everywhere. -->
     <footer class="site-footer">
-        <div class="container footer-grid">
-            <div>
-                <h3>Barangay Bagsakan</h3>
-                <p>Share food, not waste. Report surplus food and track it until it reaches someone who needs it.</p>
-            </div>
-            <div>
-                <h3>Quick links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="report.html">Report Surplus Food</a></li>
-                    <li><a href="track.html">Track a Report</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>Contact (sample details)</h3>
-                <p>Office hours: Mon&ndash;Fri, 8:00 AM &ndash; 5:00 PM</p>
-                <p>Phone: (02) 0000-0000</p>
-                <p>Email: hello@bagsakan.barangay.ph</p>
-            </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5">
+            <a class="brand brand-light" href="index.html">
+              <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+                <rect width="32" height="32" rx="7" />
+                <path d="M8 13h16l-2 10H10z" />
+                <path d="M12 13l4-5 4 5" />
+              </svg>
+              Barangay Bagsakan
+            </a>
+            <p class="footer-tagline">Share the surplus. Feed the community.</p>
+          </div>
+
+          <nav class="col-6 col-lg-3 offset-lg-1" aria-label="Footer: explore">
+            <h2 class="footer-heading">Explore</h2>
+            <ul class="footer-links">
+              <li><a href="about.html">About</a></li>
+              <li><a href="index.html#how-it-works">How it works</a></li>
+              <li><a href="report.html">Report surplus food</a></li>
+              <li><a href="track.html">Track a report</a></li>
+            </ul>
+          </nav>
+
+          <nav class="col-6 col-lg-3" aria-label="Footer: help">
+            <h2 class="footer-heading">Help</h2>
+            <ul class="footer-links">
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+              <li><a href="privacy.html">Privacy policy</a></li>
+            </ul>
+          </nav>
         </div>
-        <p class="footer-bottom">&copy; 2026 Barangay Bagsakan &middot; Group Times Square &middot; Prototype with demonstration data</p>
+
+        <div class="footer-bottom">
+          <p>&copy; <span id="year">2026</span> Barangay Bagsakan</p>
+          <p>For Web Development (WEBDEVT) demo purposes only.</p>
+        </div>
+      </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
     <script src="faq.js"></script>
-</body>
+  </body>
 </html>
