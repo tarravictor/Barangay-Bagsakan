@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Barangay Bagsakan</title>
+    <link rel="stylesheet" href="faq.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="nav-bar">
+            <a class="brand" href="index.html">
+                <span class="brand-logo" aria-hidden="true">B</span>
+                Barangay Bagsakan
+            </a>
+
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle navigation menu">&#9776;</button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="report.html">Report</a></li>
+                    <li><a href="track.html">Track</a></li>
+                    <li><a href="faq.html" class="active">FAQ</a></li>
+                    <li><a href="#" class="login-link">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container hero-row">
+                <h1>Frequently Asked Questions</h1>
+                <form class="faq-search" id="faqSearchForm" role="search">
+                    <label for="faqSearch" class="visually-hidden">Search questions</label>
+                    <input type="search" id="faqSearch" placeholder="Search questions..." autocomplete="off">
+                </form>
+            </div>
+        </section>
+
+        <section class="container faq-layout">
+
+            <aside class="topics" aria-label="FAQ topics">
+                <h2 class="topics-title">Topics</h2>
+                <ul>
+                    <li><a href="#donate">What can I donate?</a></li>
+                    <li><a href="#reporting">Reporting</a></li>
+                    <li><a href="#tracking">Tracking</a></li>
+                    <li><a href="#safety">Pickup and safety</a></li>
+                    <li><a href="#privacy">Privacy</a></li>
+                </ul>
+            </aside>
+
+            <div class="faq-content">
+
+                <section class="faq-topic" id="donate">
+                    <h2 class="topic-heading">What can I donate?</h2>
+
+                    <details class="faq-item" open>
+                        <summary>What food can NOT be donated?</summary>
+                        <p>Expired, spoiled, or opened food. Staff check every report before pickup.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>What types of food can I report?</summary>
+                        <p>Cooked meals, fruits and vegetables, bread and pastries, rice and grains, canned and packaged goods, dairy and eggs, meat and seafood, and other edible surplus food.</p>
+                    </details>
+                </section>
+
+                <section class="faq-topic" id="reporting">
+                    <h2 class="topic-heading">Reporting</h2>
+
+                    <details class="faq-item">
+                        <summary>How do I report surplus food?</summary>
+                        <p>Click Report Surplus Food, fill in the food details, expiry date, and pickup address, add a photo, confirm the food is safe and not expired, then submit your report.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Is the expiry date required?</summary>
+                        <p>Yes. The expiry date and the safety confirmation are required so unusable food never reaches staff.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Do I need to add a photo?</summary>
+                        <p>A photo is optional, but it helps staff check your food faster. Use one JPG, PNG, or WEBP file, up to 5 MB.</p>
+                    </details>
+                </section>
+
+                <section class="faq-topic" id="tracking">
+                    <h2 class="topic-heading">Tracking</h2>
+
+                    <details class="faq-item">
+                        <summary>How do I track my report?</summary>
+                        <p>Open the Track page and enter the reference number you received after submitting, for example BB-2026-001.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>What does &ldquo;Under Review&rdquo; mean?</summary>
+                        <p>Barangay staff received your report and are checking the food details and safety before arranging pickup.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>What if my report is rejected?</summary>
+                        <p>The status changes to Rejected and the reason is shown on your report. You will be notified, and you may correct the information and submit a new report.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>What if my report says &ldquo;Requires More Info&rdquo;?</summary>
+                        <p>Staff need something more from you, such as a clearer photo. Click Update report, add the missing information, and the status goes back to Under Review.</p>
+                    </details>
+                </section>
+
+                <section class="faq-topic" id="safety">
+                    <h2 class="topic-heading">Pickup and safety</h2>
+
+                    <details class="faq-item">
+                        <summary>Who checks my food?</summary>
+                        <p>Authorized barangay staff review every report and verify that the food is safe before pickup is arranged.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Who picks up the food?</summary>
+                        <p>Barangay staff coordinate the collection and connect the food with families or partner organizations who need it.</p>
+                    </details>
+                </section>
+
+                <section class="faq-topic" id="privacy">
+                    <h2 class="topic-heading">Privacy</h2>
+
+                    <details class="faq-item">
+                        <summary>How is my personal information used?</summary>
+                        <p>Your name, email, and contact number are used only to process your report and send you status updates.</p>
+                    </details>
+                </section>
+
+                <p class="no-results" id="noResults" hidden>No questions match your search. Try a different keyword.</p>
+
+            </div>
+        </section>
+
+        <section class="contact-band">
+            <div class="container band-row">
+                <div>
+                    <h2>Still stuck?</h2>
+                    <p>Barangay office hours, phone, and email.</p>
+                </div>
+                <a class="btn-orange" href="mailto:hello@bagsakan.barangay.ph">Contact us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Barangay Bagsakan</h3>
+                <p>Share food, not waste. Report surplus food and track it until it reaches someone who needs it.</p>
+            </div>
+            <div>
+                <h3>Quick links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="report.html">Report Surplus Food</a></li>
+                    <li><a href="track.html">Track a Report</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact (sample details)</h3>
+                <p>Office hours: Mon&ndash;Fri, 8:00 AM &ndash; 5:00 PM</p>
+                <p>Phone: (02) 0000-0000</p>
+                <p>Email: hello@bagsakan.barangay.ph</p>
+            </div>
+        </div>
+        <p class="footer-bottom">&copy; 2026 Barangay Bagsakan &middot; Group Times Square &middot; Prototype with demonstration data</p>
+    </footer>
+
+    <script src="faq.js"></script>
+</body>
+</html>
