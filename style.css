@@ -1,0 +1,921 @@
+/* =========================================================
+   Barangay Bagsakan: shared styles
+   Every page links this file so the header, buttons and
+   footer look the same everywhere.
+   ========================================================= */
+
+:root {
+  /* Color */
+  --white: #ffffff;
+  --sage: #eef2ec;        /* tinted sections */
+  --line: #d9e0d7;        /* dividers and borders */
+  --ink: #17211b;         /* main text */
+  --ink-soft: #4f5d55;    /* secondary text */
+  --leaf: #2d6a4b;        /* buttons, links, done states */
+  --leaf-dark: #22533a;
+  --forest: #163a2a;      /* footer */
+  --calamansi: #f2d16b;   /* "Reported" status only */
+
+  /* Type scale (16px base, about 1.25 ratio) */
+  --font: "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-md: 1.25rem;     /* 20px */
+  --text-lg: 1.5625rem;   /* 25px */
+  --text-xl: 1.9375rem;   /* 31px */
+  --text-2xl: 2.4375rem;  /* 39px */
+
+  /* Spacing and shape */
+  --section-space: 6rem;
+  --radius: 8px;
+  --header-height: 72px;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height); /* anchors don't hide under the sticky header */
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font);
+  color: var(--ink);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--leaf);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--leaf-dark);
+}
+
+:focus-visible {
+  outline: 3px solid var(--leaf);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 2000;
+  padding: 0.5rem 1rem;
+  background-color: var(--ink);
+  color: var(--white);
+  border-radius: var(--radius);
+}
+
+.skip-link:focus {
+  top: 1rem;
+  color: var(--white);
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary-solid,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: var(--text-base);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary-solid {
+  background-color: var(--leaf);
+  border: 1px solid var(--leaf);
+  color: var(--white);
+}
+
+.btn-primary-solid:hover,
+.btn-primary-solid:focus-visible {
+  background-color: var(--leaf-dark);
+  border-color: var(--leaf-dark);
+  color: var(--white);
+}
+
+.btn-outline {
+  min-height: 40px;
+  padding: 0.5rem 1.125rem;
+  background-color: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* Small solid button for the navbar (Register) */
+.btn-nav-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.5rem 1.125rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--leaf);
+  background-color: var(--leaf);
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-nav-primary:hover,
+.btn-nav-primary:focus-visible {
+  background-color: var(--leaf-dark);
+  border-color: var(--leaf-dark);
+  color: var(--white);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ---------- Status tags (used in the slip and listings) ---------- */
+.status {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.status-reported { background-color: var(--calamansi); color: #4d3c00; }
+.status-verified { background-color: #d6e8dc; color: #1c4a33; }
+.status-picked   { background-color: var(--leaf); color: var(--white); }
+
+/* =========================================================
+   1. HEADER / NAVIGATION
+   ========================================================= */
+.site-header {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .navbar {
+  min-height: var(--header-height);
+  padding: 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: var(--text-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--ink);
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.brand-mark rect {
+  fill: var(--leaf);
+}
+
+.brand-mark path {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.navbar .nav-link {
+  position: relative;
+  padding: 0.5rem 0.875rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--ink);
+}
+
+/* Current page: a short line under the link (desktop) */
+@media (min-width: 992px) {
+  .navbar .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0.875rem;
+    right: 0.875rem;
+    bottom: -1px;
+    height: 2px;
+    background-color: var(--leaf);
+  }
+
+  .site-header .navbar-nav {
+    align-self: stretch;
+  }
+
+  .site-header .nav-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .site-header .nav-link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-actions {
+    margin-left: 1rem;
+  }
+}
+
+/* Hamburger: three bars that become an X when the menu is open */
+.navbar-toggler {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 20px;
+  margin: 0 auto;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background-color: var(--ink);
+  border-radius: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navbar-toggler[aria-expanded="true"] .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navbar-toggler[aria-expanded="true"] .hamburger span:nth-child(2) { opacity: 0; }
+.navbar-toggler[aria-expanded="true"] .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    padding: 0.5rem 0 1.25rem;
+  }
+
+  .navbar .nav-link {
+    padding: 0.75rem 0;
+    min-height: 44px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .navbar .nav-link.active {
+    color: var(--leaf);
+  }
+
+  /* Log in and Register share one row, each half the width */
+  .nav-actions {
+    margin-top: 1rem;
+  }
+
+  .nav-actions .btn-outline,
+  .nav-actions .btn-nav-primary {
+    flex: 1;
+    min-height: 48px;
+  }
+}
+
+/* =========================================================
+   2. HERO
+   ========================================================= */
+.hero {
+  padding: 5.5rem 0 6rem;
+  background-color: var(--sage);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-title {
+  font-size: clamp(2.75rem, 1.6rem + 4.2vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 10ch;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text {
+  font-size: var(--text-md);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 34rem;
+  margin-bottom: 2.25rem;
+}
+
+.hero-text strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+}
+
+.hero-actions .btn-primary-solid {
+  min-height: 56px;
+  padding: 0.875rem 2rem;
+  font-size: var(--text-md);
+}
+
+.hero-track {
+  color: var(--ink-soft);
+}
+
+.hero-track a {
+  font-weight: 600;
+}
+
+/* ---------- Report slip ---------- */
+.slip {
+  margin: 0;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(23, 33, 27, 0.06), 0 12px 32px -12px rgba(23, 33, 27, 0.18);
+}
+
+.slip-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.slip-label {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.slip-ref {
+  display: block;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.slip-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+  margin: 0;
+  padding: 1.5rem 1.75rem;
+}
+
+.slip-details dt {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.slip-details dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Tear line with two notches, like a claim stub */
+.slip-progress {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 1.75rem 1.75rem 1.5rem;
+  list-style: none;
+  border-top: 1px dashed var(--line);
+}
+
+.slip-progress::before,
+.slip-progress::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--sage);
+  border: 1px solid var(--line);
+}
+
+.slip-progress::before { left: -11px; clip-path: inset(0 0 0 50%); }
+.slip-progress::after  { right: -11px; clip-path: inset(0 50% 0 0); }
+
+.slip-progress li {
+  position: relative;
+  padding-top: 1.5rem;
+}
+
+/* Dot for each step */
+.slip-progress li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--white);
+  border: 2px solid var(--line);
+}
+
+/* Line connecting the dots */
+.slip-progress li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 12px;
+  right: 0;
+  height: 2px;
+  background-color: var(--line);
+}
+
+.slip-progress .is-done::before,
+.slip-progress .is-done::after {
+  background-color: var(--leaf);
+  border-color: var(--leaf);
+}
+
+.slip-progress .is-current::before {
+  border-color: var(--leaf);
+  box-shadow: 0 0 0 4px #d6e8dc;
+}
+
+.step-name {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.step-time {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.slip-progress li:not(.is-done):not(.is-current) .step-name {
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   SHARED SECTION STYLES
+   ========================================================= */
+.section {
+  padding: var(--section-space) 0;
+}
+
+.section-tinted {
+  background-color: var(--sage);
+}
+
+.section-title {
+  font-size: clamp(var(--text-xl), 1.4rem + 1.4vw, var(--text-2xl));
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.section-lead {
+  color: var(--ink-soft);
+  max-width: 22rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.section-head .section-title {
+  margin-bottom: 0;
+}
+
+.text-link {
+  font-weight: 600;
+}
+
+/* =========================================================
+   4. HOW IT WORKS
+   ========================================================= */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--ink);
+}
+
+.step-number {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--leaf);
+  margin-bottom: 0.5rem;
+}
+
+.step-title {
+  font-size: var(--text-md);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   5. STATISTICS
+   ========================================================= */
+.stats {
+  background-color: var(--sage);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.stats-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse; /* number shows above its label */
+  padding: 2.5rem 0 2.5rem 2rem;
+  border-left: 1px solid var(--line);
+}
+
+.stat:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.stat dt {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.stat dd {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   6. RECENT REPORTS (listing board)
+   ========================================================= */
+.listings {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+
+.listing {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 8rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.listing-name {
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.listing-category,
+.listing-qty {
+  color: var(--ink-soft);
+}
+
+.listing-qty {
+  font-variant-numeric: tabular-nums;
+}
+
+.listing .status {
+  justify-self: end;
+}
+
+.listings-note {
+  margin-top: 1rem;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   7. FAQ (Bootstrap accordion, flush style)
+   ========================================================= */
+.faq {
+  --bs-accordion-bg: transparent;
+  --bs-accordion-border-color: var(--line);
+  --bs-accordion-btn-padding-x: 0;
+  --bs-accordion-btn-padding-y: 1.25rem;
+  --bs-accordion-body-padding-x: 0;
+  --bs-accordion-body-padding-y: 0;
+  --bs-accordion-btn-color: var(--ink);
+  --bs-accordion-active-color: var(--ink);
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-btn-focus-box-shadow: none;
+  /* Plus / minus icons instead of the default chevron */
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M8 2v12M2 8h12' stroke='%2317211b' stroke-width='1.6' stroke-linecap='round'/%3e%3c/svg%3e");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2 8h12' stroke='%232d6a4b' stroke-width='1.6' stroke-linecap='round'/%3e%3c/svg%3e");
+  --bs-accordion-btn-icon-transform: none;
+  --bs-accordion-btn-icon-width: 1rem;
+  border-top: 1px solid var(--ink);
+}
+
+.faq .accordion-item {
+  background-color: transparent;
+}
+
+.faq .accordion-button {
+  font-size: var(--text-md);
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.faq .accordion-button:focus-visible {
+  outline: 3px solid var(--leaf);
+  outline-offset: -3px;
+}
+
+.faq .accordion-body {
+  max-width: 40rem;
+  padding-bottom: 1.5rem;
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   8. CONTACT
+   ========================================================= */
+.contact-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 1rem 0 0;
+}
+
+.contact-item {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.contact-item dt {
+  font-weight: 600;
+  margin-bottom: 0.375rem;
+}
+
+.contact-item dd {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   9. FOOTER (same on every page)
+   ========================================================= */
+.site-footer {
+  padding: 4rem 0 2rem;
+  background-color: var(--forest);
+  color: #c5d3ca;
+}
+
+.brand-light,
+.brand-light:hover {
+  color: var(--white);
+}
+
+.brand-light .brand-mark rect {
+  fill: var(--white);
+}
+
+.brand-light .brand-mark path {
+  stroke: var(--forest);
+}
+
+.footer-tagline {
+  margin-top: 1rem;
+  max-width: 20rem;
+}
+
+.footer-heading {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links li + li {
+  margin-top: 0.625rem;
+}
+
+.footer-links a {
+  color: #c5d3ca;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--calamansi);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: var(--text-sm);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* Tablet */
+@media (max-width: 991.98px) {
+  :root {
+    --section-space: 4.5rem;
+  }
+
+  .hero {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .section-lead {
+    max-width: 34rem;
+  }
+
+  .slip {
+    max-width: 34rem;
+  }
+}
+
+/* Small tablet and phones */
+@media (max-width: 767.98px) {
+  .steps,
+  .contact-list {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .stats-list {
+    grid-template-columns: 1fr;
+  }
+
+  .stat,
+  .stat:first-child {
+    padding: 1.25rem 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .stat:first-child {
+    border-top: none;
+  }
+
+  .stat dd {
+    font-size: var(--text-xl);
+  }
+
+  /* Listing rows: name + status on top, details underneath */
+  .listing {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "name status"
+      "category qty";
+    gap: 0.25rem 1rem;
+  }
+
+  .listing-name     { grid-area: name; }
+  .listing .status  { grid-area: status; }
+  .listing-category { grid-area: category; }
+  .listing-qty      { grid-area: qty; text-align: right; }
+}
+
+/* Phones */
+@media (max-width: 575.98px) {
+  :root {
+    --section-space: 3.5rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn-primary-solid {
+    width: 100%;
+  }
+
+  .hero-track {
+    text-align: center;
+  }
+
+  .slip-head,
+  .slip-details {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .slip-progress {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+
+  .faq .accordion-button {
+    font-size: var(--text-base);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+/* Respect users who turn off motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
