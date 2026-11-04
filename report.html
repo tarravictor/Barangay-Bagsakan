@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Report surplus edible food to Barangay Bagsakan. Barangay staff verify every report before pickup.">
+    <meta name="theme-color" content="#ffffff">
+    <title>Report surplus food | Barangay Bagsakan</title>
+
+    <!-- Bootstrap 5: grid, navbar (hamburger menu) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- One typeface for the whole site: Schibsted Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ========== NAVIGATION (same as every page) ========== -->
+    <header class="site-header sticky-top">
+      <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+        <div class="container">
+          <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" />
+              <path d="M8 13h16l-2 10H10z" />
+              <path d="M12 13l4-5 4 5" />
+            </svg>
+            Barangay Bagsakan
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Open menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="main-menu">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="report.html">Report</a></li>
+              <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
+              <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+              <li class="nav-item nav-actions">
+                <a class="btn btn-outline" href="login.html">Log in</a>
+                <a class="btn btn-nav-primary" href="register.html">Register</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+
+      <!-- ========== PAGE INTRO ========== -->
+      <section class="hero page-intro" aria-labelledby="report-title">
+        <div class="container">
+          <h1 class="hero-title" id="report-title">Report surplus food</h1>
+          <p class="hero-text">Tell us what you have, how much, and when it should be picked up. Barangay staff will verify your report before any pickup.</p>
+        </div>
+      </section>
+
+      <!-- ========== REPORT FORM ========== -->
+      <section class="section" aria-label="Surplus food report form">
+        <div class="container">
+          <div class="row gy-5">
+
+            <div class="col-lg-8">
+
+              <!-- Shown after a successful submit -->
+              <div class="form-success" id="form-success" role="status" tabindex="-1" hidden>
+                <span class="status status-reported">Reported</span>
+                <h2 class="section-title">Thank you. Your report was received.</h2>
+                <p class="section-lead">Keep this reference number to track your report.</p>
+                <p class="success-ref" id="success-ref">BB-2026-0000</p>
+                <div class="hero-actions">
+                  <a class="btn btn-primary-solid" href="track.html">Track a report</a>
+                  <p class="hero-track"><a href="report.html">Submit another report</a></p>
+                </div>
+              </div>
+
+              <form class="report-form" id="report-form" novalidate>
+
+                <fieldset class="form-group">
+                  <legend>1. The food</legend>
+
+                  <div class="field">
+                    <label for="food-name">Food name</label>
+                    <input class="form-control" type="text" id="food-name" name="food-name" placeholder="e.g. Pandesal" required>
+                    <p class="field-error" id="food-name-error" hidden>Enter the name of the food.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="category">Category</label>
+                    <select class="form-select" id="category" name="category" required>
+                      <option value="">Choose a category</option>
+                      <option>Fruits and vegetables</option>
+                      <option>Bread and pastries</option>
+                      <option>Cooked meals</option>
+                      <option>Packaged goods</option>
+                      <option>Other</option>
+                    </select>
+                    <p class="field-error" id="category-error" hidden>Choose a category.</p>
+                  </div>
+
+                  <div class="field-row">
+                    <div class="field">
+                      <label for="quantity">Quantity</label>
+                      <input class="form-control" type="number" id="quantity" name="quantity" min="1" inputmode="numeric" placeholder="40" required>
+                      <p class="field-error" id="quantity-error" hidden>Enter a quantity of 1 or more.</p>
+                    </div>
+                    <div class="field">
+                      <label for="unit">Unit</label>
+                      <select class="form-select" id="unit" name="unit" required>
+                        <option value="">Choose a unit</option>
+                        <option>pieces</option>
+                        <option>kg</option>
+                        <option>servings</option>
+                        <option>packs</option>
+                      </select>
+                      <p class="field-error" id="unit-error" hidden>Choose a unit.</p>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="notes">Notes <span class="optional">(optional)</span></label>
+                    <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="How the food is stored, allergens, packaging"></textarea>
+                  </div>
+
+                  <div class="field">
+                    <label for="photo">Photo of the food <span class="optional">(optional)</span></label>
+                    <input class="form-control" type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp" aria-describedby="photo-hint">
+                    <p class="form-hint field-hint" id="photo-hint">JPG, PNG or WebP, up to 5 MB. A clear photo helps staff verify your report faster.</p>
+                    <p class="field-error" id="photo-error" hidden></p>
+                    <figure class="photo-preview" id="photo-preview" hidden>
+                      <img id="photo-preview-img" alt="Preview of the selected photo">
+                      <button class="btn btn-outline" type="button" id="photo-remove">Remove photo</button>
+                    </figure>
+                  </div>
+                </fieldset>
+
+                <fieldset class="form-group">
+                  <legend>2. Pickup</legend>
+
+                  <div class="field-row">
+                    <div class="field">
+                      <label for="best-before-date">Best before date</label>
+                      <input class="form-control" type="date" id="best-before-date" name="best-before-date" required>
+                      <p class="field-error" id="best-before-date-error" hidden>Choose today or a later date.</p>
+                    </div>
+                    <div class="field">
+                      <label for="best-before-time">Best before time</label>
+                      <input class="form-control" type="time" id="best-before-time" name="best-before-time">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="pickup-point">Pickup location</label>
+                    <input class="form-control" type="text" id="pickup-point" name="pickup-point" placeholder="e.g. Barangay Hall, or your street and house number" required>
+                    <p class="field-error" id="pickup-point-error" hidden>Enter where the food can be picked up.</p>
+                  </div>
+                </fieldset>
+
+                <fieldset class="form-group">
+                  <legend>3. Your contact details</legend>
+                  <p class="form-hint">Only barangay staff see these. They never appear in public listings.</p>
+
+                  <div class="field-row">
+                    <div class="field">
+                      <label for="donor-name">Full name</label>
+                      <input class="form-control" type="text" id="donor-name" name="donor-name" autocomplete="name" required>
+                      <p class="field-error" id="donor-name-error" hidden>Enter your name.</p>
+                    </div>
+                    <div class="field">
+                      <label for="donor-phone">Mobile number</label>
+                      <input class="form-control" type="tel" id="donor-phone" name="donor-phone" autocomplete="tel" placeholder="09XX XXX XXXX" required>
+                      <p class="field-error" id="donor-phone-error" hidden>Enter a mobile number.</p>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div class="field field-check">
+                  <input class="form-check-input" type="checkbox" id="confirm" name="confirm" required>
+                  <label for="confirm">I confirm the food is safe, edible and not expired.</label>
+                  <p class="field-error" id="confirm-error" hidden>Please confirm before submitting.</p>
+                </div>
+
+                <button class="btn btn-primary-solid" type="submit">Submit report</button>
+              </form>
+            </div>
+
+            <!-- Side guide: what to expect, in the same style as the home page -->
+            <aside class="col-lg-4" aria-label="Before you report">
+              <div class="side-card">
+                <h2 class="side-title">What happens next</h2>
+                <ol class="side-steps">
+                  <li><strong>Reported.</strong> You get a reference number right away.</li>
+                  <li><strong>Verified.</strong> Barangay staff check the report.</li>
+                  <li><strong>Picked up.</strong> Volunteers collect and deliver the food.</li>
+                </ol>
+                <h2 class="side-title">Please do not report</h2>
+                <ul class="side-list">
+                  <li>Spoiled or expired food</li>
+                  <li>Food that was not stored safely</li>
+                  <li>Opened or partly eaten items</li>
+                </ul>
+              </div>
+            </aside>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ========== FOOTER (same as every page) ========== -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5">
+            <a class="brand brand-light" href="index.html">
+              <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+                <rect width="32" height="32" rx="7" />
+                <path d="M8 13h16l-2 10H10z" />
+                <path d="M12 13l4-5 4 5" />
+              </svg>
+              Barangay Bagsakan
+            </a>
+            <p class="footer-tagline">Share the surplus. Feed the community.</p>
+          </div>
+
+          <nav class="col-6 col-lg-3 offset-lg-1" aria-label="Footer: explore">
+            <h2 class="footer-heading">Explore</h2>
+            <ul class="footer-links">
+              <li><a href="about.html">About</a></li>
+              <li><a href="index.html#how-it-works">How it works</a></li>
+              <li><a href="report.html">Report surplus food</a></li>
+              <li><a href="track.html">Track a report</a></li>
+            </ul>
+          </nav>
+
+          <nav class="col-6 col-lg-3" aria-label="Footer: help">
+            <h2 class="footer-heading">Help</h2>
+            <ul class="footer-links">
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+              <li><a href="privacy.html">Privacy policy</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; <span id="year">2026</span> Barangay Bagsakan</p>
+          <p>For Web Development (WEBDEVT) demo purposes only.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script src="report.js"></script>
+  </body>
+</html>

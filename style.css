@@ -919,3 +919,249 @@ a:hover {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* =========================================================
+   REPORT PAGE (report.html)
+   ========================================================= */
+.page-intro {
+  padding: 4rem 0 4.5rem;
+}
+
+.page-intro .hero-title {
+  max-width: 14ch;
+}
+
+.page-intro .hero-text {
+  margin-bottom: 0;
+}
+
+.report-form .form-group {
+  border: 0;
+  border-top: 1px solid var(--line);
+  padding: 2rem 0 0.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.report-form .form-group:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.report-form legend {
+  float: none;
+  width: auto;
+  padding: 0;
+  margin-bottom: 1.25rem;
+  font-size: var(--text-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.form-hint {
+  margin: -0.5rem 0 1.25rem;
+  color: var(--ink-soft);
+}
+
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.5rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 600;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.report-form .form-control,
+.report-form .form-select {
+  min-height: 48px;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #aab5ac;
+  border-radius: var(--radius);
+  background-color: var(--white);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--text-base);
+  box-shadow: none;
+}
+
+.report-form textarea.form-control {
+  min-height: 6rem;
+}
+
+.report-form .form-control:focus,
+.report-form .form-select:focus {
+  border-color: var(--leaf);
+  outline: 3px solid var(--leaf);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.report-form [aria-invalid="true"] {
+  border-color: #a63a2b;
+}
+
+.field-error {
+  margin: 0.375rem 0 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: #a63a2b;
+}
+
+.field-check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 0.75rem;
+  align-items: start;
+}
+
+.field-check .form-check-input {
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: 0.125rem;
+  border: 1px solid #aab5ac;
+}
+
+.field-check .form-check-input:checked {
+  background-color: var(--leaf);
+  border-color: var(--leaf);
+}
+
+.field-check label {
+  margin: 0;
+  font-weight: 500;
+}
+
+.field-check .field-error {
+  grid-column: 2;
+}
+
+.report-form .btn-primary-solid {
+  min-height: 56px;
+  padding: 0.875rem 2rem;
+  font-size: var(--text-md);
+}
+
+.side-card {
+  padding: 1.75rem;
+  background-color: var(--sage);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.side-title {
+  margin: 0 0 0.875rem;
+  font-size: var(--text-md);
+  font-weight: 700;
+}
+
+.side-steps,
+.side-list {
+  margin: 0 0 1.75rem;
+  padding-left: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.side-steps li,
+.side-list li {
+  margin-bottom: 0.5rem;
+}
+
+.side-list {
+  margin-bottom: 0;
+}
+
+.side-steps strong {
+  color: var(--ink);
+}
+
+.form-success {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--white);
+}
+
+.form-success[hidden],
+.report-form[hidden] {
+  display: none;
+}
+
+.form-success .status {
+  margin-bottom: 1rem;
+}
+
+.success-ref {
+  margin: 0 0 1.75rem;
+  font-size: var(--text-xl);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 991.98px) {
+  .page-intro {
+    padding: 3rem 0 3.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .report-form .btn-primary-solid {
+    width: 100%;
+  }
+
+  .form-success {
+    padding: 1.5rem;
+  }
+}
+
+/* Photo upload */
+.field-hint {
+  margin: 0.375rem 0 0;
+  font-size: var(--text-sm);
+}
+
+.report-form input[type="file"]::file-selector-button {
+  margin-right: 0.875rem;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-right: 1px solid #aab5ac;
+  background-color: var(--sage);
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.photo-preview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0 0;
+}
+
+.photo-preview[hidden] {
+  display: none;
+}
+
+.photo-preview img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
