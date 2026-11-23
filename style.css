@@ -171,6 +171,8 @@ a:hover {
 .status-reported { background-color: var(--calamansi); color: #4d3c00; }
 .status-verified { background-color: #d6e8dc; color: #1c4a33; }
 .status-picked   { background-color: var(--leaf); color: var(--white); }
+.status-info     { background-color: #f5a524; color: #2b1d00; }   /* Requires more info */
+.status-rejected { background-color: #f4d6d1; color: #7a2418; }   /* Rejected */
 
 /* =========================================================
    1. HEADER / NAVIGATION

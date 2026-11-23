@@ -1,5 +1,6 @@
 // Barangay Bagsakan: report form (report.js)
-// Demo only: nothing is sent anywhere. It validates the form and shows a sample reference number.
+// Demo only: nothing is sent to a server. A valid report is saved in this browser
+// (see reports.js) so its reference number can be looked up on the Track page.
 
 const form = document.getElementById("report-form");
 const success = document.getElementById("form-success");
@@ -56,8 +57,33 @@ form.addEventListener("submit", function (event) {
     return;
   }
 
-  const number = String(Math.floor(Math.random() * 9000) + 1000);
-  document.getElementById("success-ref").textContent = "BB-" + new Date().getFullYear() + "-" + number;
+  // Build the report from the form and save it (reports.js).
+  const ref = newReference();
+  const now = new Date().toISOString();
+  const photoFile = document.getElementById("photo").files[0];
+  const report = {
+    ref: ref,
+    food: document.getElementById("food-name").value.trim(),
+    category: document.getElementById("category").value,
+    quantity: Number(document.getElementById("quantity").value),
+    unit: document.getElementById("unit").value,
+    notes: document.getElementById("notes").value.trim(),
+    photoName: photoFile ? photoFile.name : "",
+    bestBeforeDate: document.getElementById("best-before-date").value,
+    bestBeforeTime: document.getElementById("best-before-time").value,
+    pickup: document.getElementById("pickup-point").value.trim(),
+    donorName: document.getElementById("donor-name").value.trim(),
+    donorPhone: document.getElementById("donor-phone").value.trim(),
+    status: "Reported",
+    remarks: "",
+    createdAt: now,
+    history: [{ status: "Reported", at: now }]
+  };
+  const saved = saveReport(report);
+
+  document.getElementById("success-ref").textContent = ref;
+  document.getElementById("success-track").href = "track.html?ref=" + encodeURIComponent(ref);
+  document.getElementById("save-warning").hidden = saved;
 
   form.hidden = true;
   success.hidden = false;
