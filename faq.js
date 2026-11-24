@@ -1,12 +1,3 @@
-// Hamburger menu (mobile)
-var navToggle = document.getElementById("navToggle");
-var mainNav = document.getElementById("mainNav");
-
-navToggle.addEventListener("click", function () {
-    var isOpen = mainNav.classList.toggle("open");
-    navToggle.setAttribute("aria-expanded", isOpen);
-});
-
 // FAQ search
 var searchForm = document.getElementById("faqSearchForm");
 var searchInput = document.getElementById("faqSearch");
