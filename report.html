@@ -98,20 +98,23 @@
                     <label for="category">Category</label>
                     <select class="form-select" id="category" name="category" required>
                       <option value="">Choose a category</option>
+                      <option>Cooked meals</option>
                       <option>Fruits and vegetables</option>
                       <option>Bread and pastries</option>
-                      <option>Cooked meals</option>
-                      <option>Packaged goods</option>
+                      <option>Rice and grains</option>
+                      <option>Canned and packaged goods</option>
+                      <option>Dairy and eggs</option>
+                      <option>Meat and seafood</option>
                       <option>Other</option>
                     </select>
-                    <p class="field-error" id="category-error" hidden>Choose a category.</p>
+                    <p class="field-error" id="category-error" hidden>Please select a food category from the list.</p>
                   </div>
 
                   <div class="field-row">
                     <div class="field">
                       <label for="quantity">Quantity</label>
-                      <input class="form-control" type="number" id="quantity" name="quantity" min="1" inputmode="numeric" placeholder="40" required>
-                      <p class="field-error" id="quantity-error" hidden>Enter a quantity of 1 or more.</p>
+                      <input class="form-control" type="number" id="quantity" name="quantity" min="1" max="1000" inputmode="numeric" placeholder="40" required>
+                      <p class="field-error" id="quantity-error" hidden>Enter a quantity from 1 to 1000.</p>
                     </div>
                     <div class="field">
                       <label for="unit">Unit</label>
@@ -127,8 +130,20 @@
                   </div>
 
                   <div class="field">
-                    <label for="notes">Notes <span class="optional">(optional)</span></label>
-                    <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="How the food is stored, allergens, packaging"></textarea>
+                    <label for="condition">Food condition</label>
+                    <select class="form-select" id="condition" name="condition" required>
+                      <option value="">Choose the condition</option>
+                      <option>Fresh</option>
+                      <option>Near expiry</option>
+                    </select>
+                    <p class="field-error" id="condition-error" hidden>Choose the food's condition.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="notes">Description</label>
+                    <textarea class="form-control" id="notes" name="notes" rows="3" maxlength="500" placeholder="Condition, packaging and how it is stored, e.g. Sealed in plastic, kept in the ref" required></textarea>
+                    <p class="form-hint field-hint">10 to 500 characters.</p>
+                    <p class="field-error" id="notes-error" hidden>Please describe the food, including its condition, packaging and how it is stored (at least 10 characters).</p>
                   </div>
 
                   <div class="field">
@@ -163,6 +178,30 @@
                     <input class="form-control" type="text" id="pickup-point" name="pickup-point" placeholder="e.g. Barangay Hall, or your street and house number" required>
                     <p class="field-error" id="pickup-point-error" hidden>Enter where the food can be picked up.</p>
                   </div>
+
+                  <div class="field">
+                    <label for="barangay">Barangay</label>
+                    <select class="form-select" id="barangay" name="barangay" required>
+                      <option value="">Choose your barangay</option>
+                      <option>B. F. Homes</option>
+                      <option>Baclaran</option>
+                      <option>Don Bosco</option>
+                      <option>Don Galo</option>
+                      <option>La Huerta</option>
+                      <option>Marcelo Green</option>
+                      <option>Merville</option>
+                      <option>Moonwalk</option>
+                      <option>San Antonio</option>
+                      <option>San Dionisio</option>
+                      <option>San Isidro</option>
+                      <option>San Martin de Porres</option>
+                      <option>Santo Niño</option>
+                      <option>Sun Valley</option>
+                      <option>Tambo</option>
+                      <option>Vitalez</option>
+                    </select>
+                    <p class="field-error" id="barangay-error" hidden>Select your barangay.</p>
+                  </div>
                 </fieldset>
 
                 <fieldset class="form-group">
@@ -178,10 +217,22 @@
                     <div class="field">
                       <label for="donor-phone">Mobile number</label>
                       <input class="form-control" type="tel" id="donor-phone" name="donor-phone" autocomplete="tel" placeholder="09XX XXX XXXX" required>
-                      <p class="field-error" id="donor-phone-error" hidden>Enter a mobile number.</p>
+                      <p class="field-error" id="donor-phone-error" hidden>Enter a mobile number like 0917 123 4567.</p>
                     </div>
                   </div>
+
+                  <div class="field">
+                    <label for="donor-email">Email</label>
+                    <input class="form-control" type="email" id="donor-email" name="donor-email" autocomplete="email" maxlength="254" placeholder="name@example.com" required>
+                    <p class="field-error" id="donor-email-error" hidden>Please enter a valid email address, such as name@example.com.</p>
+                  </div>
                 </fieldset>
+
+                <div class="field field-check">
+                  <input class="form-check-input" type="checkbox" id="privacy-consent" name="privacy-consent" required>
+                  <label for="privacy-consent">I agree to the <a class="text-link" href="privacy.html">privacy notice</a>. My details are used only to verify this report and arrange pickup, under the Data Privacy Act of 2012 (RA 10173).</label>
+                  <p class="field-error" id="privacy-consent-error" hidden>Please agree to the privacy notice before submitting.</p>
+                </div>
 
                 <div class="field field-check">
                   <input class="form-check-input" type="checkbox" id="confirm" name="confirm" required>

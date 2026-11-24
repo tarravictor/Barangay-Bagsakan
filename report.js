@@ -22,11 +22,20 @@ function showError(field, message) {
   error.hidden = !message;
 }
 
+// Mobile number: 09 + 9 digits, or +639 + 9 digits (spaces are ignored).
+const PHONE_PATTERN = /^(09\d{9}|\+639\d{9})$/;
+// Email: something@something.something, no spaces.
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 function isValid(field) {
+  const value = field.value.trim();
   if (field.type === "checkbox") return field.checked;
-  if (field.type === "number") return Number(field.value) >= 1;
+  if (field.type === "number") return value !== "" && Number(value) >= 1 && Number(value) <= 1000;
   if (field.id === "best-before-date") return field.value !== "" && field.value >= field.min;
-  return field.value.trim() !== "";
+  if (field.id === "donor-phone") return PHONE_PATTERN.test(field.value.replace(/\s/g, ""));
+  if (field.id === "donor-email") return value.length <= 254 && EMAIL_PATTERN.test(value);
+  if (field.id === "notes") return value.length >= 10 && value.length <= 500;
+  return value !== "";
 }
 
 const required = form.querySelectorAll("[required]");
@@ -67,13 +76,16 @@ form.addEventListener("submit", function (event) {
     category: document.getElementById("category").value,
     quantity: Number(document.getElementById("quantity").value),
     unit: document.getElementById("unit").value,
+    condition: document.getElementById("condition").value,
     notes: document.getElementById("notes").value.trim(),
     photoName: photoFile ? photoFile.name : "",
     bestBeforeDate: document.getElementById("best-before-date").value,
     bestBeforeTime: document.getElementById("best-before-time").value,
     pickup: document.getElementById("pickup-point").value.trim(),
+    barangay: document.getElementById("barangay").value,
     donorName: document.getElementById("donor-name").value.trim(),
-    donorPhone: document.getElementById("donor-phone").value.trim(),
+    donorPhone: document.getElementById("donor-phone").value.replace(/\s/g, ""),
+    email: document.getElementById("donor-email").value.trim(),
     status: "Reported",
     remarks: "",
     createdAt: now,
