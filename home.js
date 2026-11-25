@@ -3,13 +3,6 @@
 // and shows the 3 newest. Only the food, quantity, category and status are shown:
 // never a donor's name or phone number. Load reports.js before this file.
 
-const STATUS_CLASS = {
-  "Reported": "status-reported",
-  "Verified": "status-verified",
-  "Picked up": "status-picked",
-  "Requires more info": "status-info",
-  "Rejected": "status-rejected"
-};
 
 function countWithStatus(reports, names) {
   return reports.filter(function (report) {

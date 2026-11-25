@@ -22,34 +22,37 @@
 
     <!-- ========== NAVIGATION (same as every page) ========== -->
     <header class="site-header sticky-top">
-        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
-            <div class="container">
-                <a class="brand" href="index.html">
-                    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-                        <rect width="32" height="32" rx="7" />
-                        <path d="M8 13h16l-2 10H10z" />
-                        <path d="M12 13l4-5 4 5" />
-                    </svg>
-                    Barangay Bagsakan
-                </a>
+      <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+        <div class="container">
+          <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" />
+              <path d="M8 13h16l-2 10H10z" />
+              <path d="M12 13l4-5 4 5" />
+            </svg>
+            Barangay Bagsakan
+          </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Open menu">
-                    <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
-                </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Open menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
 
-                <div class="collapse navbar-collapse" id="main-menu">
-                    <ul class="navbar-nav ms-auto align-items-lg-center">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
-                        <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
-                        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-                        <li class="nav-item nav-actions">
-                            <a class="btn btn-outline" href="login.html">Log in</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+          <div class="collapse navbar-collapse" id="main-menu">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="how-it-works.html">How it works</a></li>
+              <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+              <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
+              <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              <li class="nav-item nav-actions">
+                <a class="btn btn-outline" href="login.html">Log in</a>
+                <a class="btn btn-nav-primary" href="register.html">Register</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <main id="main">
@@ -69,17 +72,17 @@
 
                         <h2 class="side-title">What we collect</h2>
                         <ul class="side-list">
-                            <li>Your full name, email address and mobile number</li>
+                            <li>Your account: full name, email address, mobile number, an optional organization name, and your password (saved only as a SHA-256 hash, never as you typed it)</li>
                             <li>Your barangay and the pickup location</li>
                             <li>Food details: what it is, how much, the best-before date, its condition and a short description</li>
-                            <li>A photo of the food, if you choose to add one. This demo keeps only the photo's file name.</li>
+                            <li>One photo of the food. This demo saves a smaller copy of it so staff can check the food's condition.</li>
                         </ul>
 
                         <h2 class="side-title mt-5">Why we collect it</h2>
                         <p>We use it to check that the food is safe, arrange the pickup, and let you follow your report with its reference number. We do not use it for anything else.</p>
 
                         <h2 class="side-title mt-5">Who can see it</h2>
-                        <p>Only barangay staff can see your name, email and mobile number. They are never shown on the Home page or the Track page. Anyone with a reference number can see the food, its status and the staff remarks, but not who reported it.</p>
+                        <p>Only barangay staff can see your name, email and mobile number. They are never shown on the Home page or the Track page. Anyone with a reference number can see the food, its status and the staff remarks, but not who reported it. The full details and the photo are shown only to you (when you are logged in) and to barangay staff.</p>
 
                         <h2 class="side-title mt-5">Your rights under the Data Privacy Act of 2012 (RA 10173)</h2>
                         <p class="mb-3">The Data Privacy Act of 2012 (Republic Act No. 10173) protects your personal information. Under this law you may:</p>
@@ -90,10 +93,10 @@
                             <li>Object to how it is used</li>
                             <li>Complain to the National Privacy Commission if you think your rights were not respected</li>
                         </ul>
-                        <p class="mt-3">To use any of these rights, <a href="index.html#contact">contact the barangay</a>.</p>
+                        <p class="mt-3">To use any of these rights, <a href="contact.html">contact the barangay</a>.</p>
 
                         <h2 class="side-title mt-5">This is a class demo</h2>
-                        <p>Barangay Bagsakan is a school project for Web Development (WEBDEVT). There is no server and no database. Everything you enter is saved only in your own browser, on your own device, and nothing is sent anywhere. You can remove it any time by clearing your browser's site data.</p>
+                        <p>Barangay Bagsakan is a school project for Web Development (WEBDEVT). There is no server and no database. Everything you enter, including your account and photos, is saved only in your own browser, on your own device, and nothing is sent anywhere. You can remove it any time by clearing your browser's site data. Because the login runs in the browser, it shows how the system would work but is not as secure as a real server login.</p>
 
                     </div>
 
@@ -117,48 +120,51 @@
 
     <!-- ========== FOOTER (same as every page) ========== -->
     <footer class="site-footer">
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-5">
-                    <a class="brand brand-light" href="index.html">
-                        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-                            <rect width="32" height="32" rx="7" />
-                            <path d="M8 13h16l-2 10H10z" />
-                            <path d="M12 13l4-5 4 5" />
-                        </svg>
-                        Barangay Bagsakan
-                    </a>
-                    <p class="footer-tagline">Share the surplus. Feed the community.</p>
-                </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5">
+            <a class="brand brand-light" href="index.html">
+              <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" />
+              <path d="M8 13h16l-2 10H10z" />
+              <path d="M12 13l4-5 4 5" />
+            </svg>
+              Barangay Bagsakan
+            </a>
+            <p class="footer-tagline">Share food, not waste.</p>
+          </div>
 
-                <nav class="col-6 col-lg-3 offset-lg-1" aria-label="Footer: explore">
-                    <h2 class="footer-heading">Explore</h2>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="index.html#how-it-works">How it works</a></li>
-                        <li><a href="report.html">Report surplus food</a></li>
-                        <li><a href="track.html">Track a report</a></li>
-                    </ul>
-                </nav>
+          <nav class="col-6 col-lg-3 offset-lg-1" aria-label="Footer: explore">
+            <h2 class="footer-heading">Explore</h2>
+            <ul class="footer-links">
+              <li><a href="about.html">About</a></li>
+              <li><a href="how-it-works.html">How it works</a></li>
+              <li><a href="report.html">Report surplus food</a></li>
+              <li><a href="track.html">Track a report</a></li>
+              <li><a href="register.html">Register</a></li>
+            </ul>
+          </nav>
 
-                <nav class="col-6 col-lg-3" aria-label="Footer: help">
-                    <h2 class="footer-heading">Help</h2>
-                    <ul class="footer-links">
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                        <li><a href="privacy.html">Privacy policy</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; <span id="year">2026</span> Barangay Bagsakan</p>
-                <p>For Web Development (WEBDEVT) demo purposes only.</p>
-            </div>
+          <nav class="col-6 col-lg-3" aria-label="Footer: help">
+            <h2 class="footer-heading">Help</h2>
+            <ul class="footer-links">
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="privacy.html">Privacy policy</a></li>
+              <li><a href="how-it-works.html#guidelines">Reporting guidelines</a></li>
+            </ul>
+          </nav>
         </div>
+
+        <div class="footer-bottom">
+          <p>&copy; <span id="year">2026</span> Barangay Bagsakan</p>
+          <p>For Web Development (WEBDEVT) demo purposes only.</p>
+        </div>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

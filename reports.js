@@ -9,11 +9,27 @@
 //   setStatus(ref, status, remark) -> changes a report's status and adds it to the history
 //   newReference()                 -> a new unused reference like "BB-2026-4821"
 //   normalizeRef(text)             -> cleans what a user typed, e.g. "bb-2026-148" -> "BB-2026-0148"
-//   STATUSES                       -> the only status words the site uses
+//   reportsByOwner(email)          -> the reports one donor submitted, newest first
+//   findDuplicate(report)          -> an open report for the same food, or null
+//   STATUSES, STATUS_CLASS         -> the status words the site uses, and their colour tags
 
 const STORAGE_KEY = "bb-reports";
 
-const STATUSES = ["Reported", "Verified", "Picked up", "Requires more info", "Rejected"];
+const STATUSES = ["Reported", "Verified", "Picked up", "Requires more info", "Rejected", "Duplicate"];
+
+// Which colour tag (style.css) goes with each status. Every status tag also shows
+// the status word, so the meaning never depends on colour alone.
+const STATUS_CLASS = {
+  "Reported": "status-reported",
+  "Verified": "status-verified",
+  "Picked up": "status-picked",
+  "Requires more info": "status-info",
+  "Rejected": "status-rejected",
+  "Duplicate": "status-duplicate"
+};
+
+// Statuses where staff are finished with a report.
+const CLOSED_STATUSES = ["Picked up", "Rejected", "Duplicate"];
 
 // ---------- Small date helpers ----------
 
@@ -44,6 +60,9 @@ function sampleReports() {
       bestBeforeDate: dateFromToday(2),
       bestBeforeTime: "",
       pickup: "Purok 2, near the chapel",
+      barangay: "San Dionisio",
+      condition: "Near expiry",
+      notes: "Ripe tomatoes in a crate, kept in a cool shaded area.",
       status: "Requires more info",
       remarks: "Please upload a clearer photo of the packaging.",
       createdAt: hoursAgo(26),
@@ -62,6 +81,9 @@ function sampleReports() {
       bestBeforeDate: dateFromToday(0),
       bestBeforeTime: "18:00",
       pickup: "Barangay Hall",
+      barangay: "Don Galo",
+      condition: "Fresh",
+      notes: "Baked this morning, packed in paper bags of 10.",
       status: "Verified",
       remarks: "Checked by barangay staff. Volunteers will pick up this afternoon.",
       createdAt: hoursAgo(5),
@@ -80,6 +102,9 @@ function sampleReports() {
       bestBeforeDate: dateFromToday(0),
       bestBeforeTime: "20:00",
       pickup: "Covered court, Purok 4",
+      barangay: "Tambo",
+      condition: "Fresh",
+      notes: "Leftover from a barangay event, kept warm in covered trays.",
       status: "Picked up",
       remarks: "Delivered to the community kitchen. Salamat po!",
       createdAt: hoursAgo(30),
@@ -182,4 +207,25 @@ function newReference() {
     if (!getReport(ref)) break;
   }
   return ref;
+}
+
+function reportsByOwner(email) {
+  const key = String(email || "").trim().toLowerCase();
+  return allReports().filter(function (report) {
+    return report.ownerEmail === key;
+  });
+}
+
+// Duplicate check: the same donor already has an open report for the same food,
+// at the same pickup address, with the same best-before date.
+function findDuplicate(report) {
+  const same = function (a, b) {
+    return String(a || "").trim().toLowerCase() === String(b || "").trim().toLowerCase();
+  };
+  return reportsByOwner(report.ownerEmail).find(function (other) {
+    return CLOSED_STATUSES.indexOf(other.status) === -1 &&
+      same(other.food, report.food) &&
+      same(other.pickup, report.pickup) &&
+      other.bestBeforeDate === report.bestBeforeDate;
+  }) || null;
 }

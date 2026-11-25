@@ -1,6 +1,9 @@
 // Barangay Bagsakan: track a report (track.js)
 // Looks up a reference number with getReport() from reports.js and fills in the
 // result card that is already in track.html. Demo only: data comes from this browser.
+// Load auth.js, forms.js and reports.js before this file.
+// Anyone can track a report, but only the donor who sent it (and the admin) see the
+// full details and photo. The donor can also reply when staff ask for more info.
 
 const lookupForm = document.getElementById("lookup-form");
 const refInput = document.getElementById("ref");
@@ -11,14 +14,6 @@ const resultBox = document.getElementById("track-result");
 // The three main steps every report goes through.
 const MAIN_STEPS = ["Reported", "Verified", "Picked up"];
 
-// Which colour tag (style.css) goes with each status.
-const STATUS_CLASS = {
-  "Reported": "status-reported",
-  "Verified": "status-verified",
-  "Picked up": "status-picked",
-  "Requires more info": "status-info",
-  "Rejected": "status-rejected"
-};
 
 // ---------- Formatting helpers ----------
 
@@ -62,8 +57,8 @@ function timeOf(report, status) {
 }
 
 // ---------- Timeline ----------
-// Builds the 3 main steps. "Requires more info" and "Rejected" take the place
-// of the Verified step, because that is where staff decide.
+// Builds the 3 main steps. "Requires more info", "Rejected" and "Duplicate" take
+// the place of the Verified step, because that is where staff decide.
 function buildSteps(report) {
   const status = report.status;
   const reachedIndex = MAIN_STEPS.indexOf(status); // -1 for the two exception statuses
@@ -79,7 +74,7 @@ function buildSteps(report) {
       if (index === 1) {
         step.name = status;
         step.time = timeOf(report, status);
-        step.state = status === "Rejected" ? "rejected" : "warning";
+        step.state = status === "Requires more info" ? "warning" : "rejected";
       }
     }
     return step;
@@ -119,7 +114,8 @@ function renderTimeline(report) {
     if (step.time) {
       time.textContent = formatWhen(step.time);
     } else {
-      time.textContent = report.status === "Rejected" && step.state === "todo" ? "Not going ahead" : "Waiting";
+      const stopped = report.status === "Rejected" || report.status === "Duplicate";
+      time.textContent = stopped && step.state === "todo" ? "Not going ahead" : "Waiting";
     }
 
     item.append(dot, name, time);
@@ -149,23 +145,164 @@ function showReport(report) {
   document.getElementById("detail-updated").textContent =
     entries.length ? formatWhen(entries[entries.length - 1].at) : formatWhen(report.createdAt);
 
-  // The yellow banner only appears when the donor has to do something.
-  const banner = document.getElementById("action-banner");
-  const needsAction = report.status === "Requires more info" || report.status === "Rejected";
-  banner.hidden = !needsAction;
-  if (needsAction) {
-    const rejected = report.status === "Rejected";
-    banner.classList.toggle("is-rejected", rejected);
-    banner.querySelector(".action-title").textContent = rejected ? "Report not accepted" : "Action needed";
-    banner.querySelector(".btn").textContent = rejected ? "Report other food" : "Update report";
-    document.getElementById("action-message").textContent =
-      report.remarks || (rejected ? "Staff could not accept this food." : "Staff need more information from you.");
-  }
+  const viewer = currentUser();
+  const isOwner = Boolean(viewer && viewer.role === "donor" && report.ownerEmail === viewer.email);
+  const isAdmin = Boolean(viewer && viewer.role === "admin");
+
+  renderBanner(report, isOwner, isAdmin);
+  renderOwnerDetails(report, isOwner || isAdmin);
+  replyForm.hidden = !(isOwner && report.status === "Requires more info");
+  currentRef = report.ref;
 
   emptyState.hidden = true;
   resultBox.hidden = false;
   document.getElementById("result-title").focus();
 }
+
+// ---------- "Action needed" banner ----------
+
+const BANNERS = {
+  "Requires more info": { title: "Action needed", fallback: "Staff need more information from you." },
+  "Rejected": { title: "Report not accepted", fallback: "Staff could not accept this food." },
+  "Duplicate": { title: "Already reported", fallback: "This food was already reported." }
+};
+
+function renderBanner(report, isOwner, isAdmin) {
+  const banner = document.getElementById("action-banner");
+  const button = document.getElementById("action-button");
+  const info = BANNERS[report.status];
+  banner.hidden = !info;
+  if (!info) return;
+
+  banner.classList.toggle("is-rejected", report.status !== "Requires more info");
+  banner.querySelector(".action-title").textContent = info.title;
+  document.getElementById("action-message").textContent = report.remarks || info.fallback;
+
+  // What the button does depends on who is looking.
+  button.hidden = false;
+  if (isAdmin) {
+    button.textContent = "Open dashboard";
+    button.href = "staff.html";
+  } else if (report.status === "Requires more info") {
+    if (isOwner) {
+      button.textContent = "Reply to staff";
+      button.href = "#reply-form";
+    } else {
+      button.textContent = "Log in to reply";
+      button.href = "login.html?need=donor&next=" + encodeURIComponent("track.html?ref=" + report.ref);
+    }
+  } else if (report.status === "Duplicate") {
+    button.textContent = isOwner ? "See my reports" : "Track another report";
+    button.href = isOwner ? "my-reports.html" : "track.html";
+  } else {
+    button.textContent = "Report other food";
+    button.href = "report.html";
+  }
+}
+
+// ---------- Full details for the owner and the admin ----------
+
+function formatDay(dateText, timeText) {
+  if (!dateText) return "";
+  const p = dateText.split("-").map(Number);
+  const t = (timeText || "").split(":").map(Number);
+  const d = new Date(p[0], p[1] - 1, p[2], t[0] || 0, t[1] || 0);
+  let label = d.toLocaleDateString("en-PH", { month: "short", day: "numeric", year: "numeric" });
+  if (timeText) label += ", " + d.toLocaleTimeString("en-PH", { hour: "numeric", minute: "2-digit" });
+  return label;
+}
+
+function renderOwnerDetails(report, show) {
+  const box = document.getElementById("owner-details");
+  const body = document.getElementById("owner-body");
+  box.hidden = !show;
+  document.getElementById("track-privacy").hidden = show;
+  body.innerHTML = "";
+  if (!show) return;
+
+  const figure = document.createElement("figure");
+  figure.className = "dash-photo";
+  if (report.photo) {
+    const img = document.createElement("img");
+    img.src = report.photo;
+    img.alt = "Photo of " + report.food;
+    figure.appendChild(img);
+  } else {
+    const none = document.createElement("p");
+    none.className = "dash-nophoto";
+    none.textContent = "No photo for this sample report.";
+    figure.appendChild(none);
+  }
+
+  const list = document.createElement("dl");
+  list.className = "dash-list";
+  [
+    ["Category", report.category + (report.otherSpec ? " (" + report.otherSpec + ")" : "")],
+    ["Condition", report.condition],
+    ["Description", report.notes],
+    ["Date prepared", formatDay(report.datePrepared)],
+    ["Barangay", [report.barangay, report.city].filter(Boolean).join(", ")],
+    ["Landmark", report.landmark],
+    ["Preferred pickup", formatDay(report.pickupDate, report.pickupTime)]
+  ].forEach(function (pair) {
+    if (!pair[1]) return;
+    const row = document.createElement("div");
+    const dt = document.createElement("dt");
+    dt.textContent = pair[0];
+    const dd = document.createElement("dd");
+    dd.textContent = pair[1];
+    row.append(dt, dd);
+    list.appendChild(row);
+  });
+
+  (report.updates || []).forEach(function (update) {
+    const row = document.createElement("div");
+    const dt = document.createElement("dt");
+    dt.textContent = "Your reply, " + formatWhen(update.at);
+    const dd = document.createElement("dd");
+    dd.textContent = update.message;
+    row.append(dt, dd);
+    list.appendChild(row);
+  });
+
+  body.append(figure, list);
+}
+
+// ---------- Donor replies to "Requires more info" ----------
+
+const replyForm = document.getElementById("reply-form");
+const replyText = document.getElementById("reply-text");
+let currentRef = "";
+
+const validateReply = connectValidation(replyForm, {
+  "reply-text": function (field) {
+    const length = field.value.trim().length;
+    if (length < 10) return "Write at least 10 characters so staff know what changed.";
+    if (length > 500) return "Keep your reply to 500 characters or fewer.";
+    return "";
+  }
+}, null);
+
+replyForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (validateReply().length) return;
+
+  const viewer = currentUser();
+  const report = getReport(currentRef);
+  if (!report || !viewer || report.ownerEmail !== viewer.email) return;
+
+  const now = new Date().toISOString();
+  report.updates = (report.updates || []).concat([{ at: now, message: replyText.value.trim() }]);
+  report.status = "Reported";
+  report.history = (report.history || []).concat([{ status: "Reported", at: now, note: "donor sent more information" }]);
+  report.remarks = "";
+  if (!saveReport(report)) {
+    setFieldError(replyText, "Could not save. This browser may be blocking storage.");
+    return;
+  }
+  replyText.value = "";
+  showReport(report);
+});
 
 function showError(message) {
   refError.textContent = message;

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How reporting surplus food works, what each status means, and reporting guidelines.">
+    <meta name="theme-color" content="#ffffff">
+    <title>How it works | Barangay Bagsakan</title>
+
+    <!-- Bootstrap 5: grid, navbar (hamburger menu) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- One typeface for the whole site: Schibsted Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ========== NAVIGATION (same as every page) ========== -->
+    <header class="site-header sticky-top">
+      <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+        <div class="container">
+          <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" />
+              <path d="M8 13h16l-2 10H10z" />
+              <path d="M12 13l4-5 4 5" />
+            </svg>
+            Barangay Bagsakan
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Open menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="main-menu">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="how-it-works.html">How it works</a></li>
+              <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+              <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
+              <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              <li class="nav-item nav-actions">
+                <a class="btn btn-outline" href="login.html">Log in</a>
+                <a class="btn btn-nav-primary" href="register.html">Register</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+
+      <section class="hero page-intro" aria-labelledby="page-title">
+        <div class="container">
+          <h1 class="hero-title" id="page-title">How it works</h1>
+          <p class="hero-text">From your kitchen to a family that needs it, in four steps. Every report is checked by barangay staff before any food is shared.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="steps-title">
+        <div class="container">
+          <h2 class="section-title" id="steps-title">The four steps</h2>
+          <ol class="how-steps">
+            <li>
+              <h3 class="step-title">1. Register</h3>
+              <p>Create a free donor account with your name, email and mobile number. Only registered donors can report, which keeps out spam and fake reports.</p>
+              <a class="text-link" href="register.html">Register as a donor</a>
+            </li>
+            <li>
+              <h3 class="step-title">2. Report the food</h3>
+              <p>Tell us what the food is, how much there is, its condition, its best-before date and where to pick it up. Add one clear photo. You get a reference number right away.</p>
+              <a class="text-link" href="report.html">Report surplus food</a>
+            </li>
+            <li>
+              <h3 class="step-title">3. Staff check it</h3>
+              <p>Barangay staff look at the details and the photo. If the food is safe to share, they mark it <strong>Verified</strong> and arrange a pickup. If they need something from you, they mark it <strong>Requires more info</strong>.</p>
+            </li>
+            <li>
+              <h3 class="step-title">4. Pickup</h3>
+              <p>Volunteers collect the food and bring it to families or the community kitchen. The report changes to <strong>Picked up</strong>.</p>
+              <a class="text-link" href="track.html">Track a report</a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section section-tinted" aria-labelledby="status-title">
+        <div class="container">
+          <h2 class="section-title" id="status-title">What each status means</h2>
+          <dl class="status-guide">
+            <div><dt><span class="status status-reported">Reported</span></dt><dd>We received your report. Staff will check it soon.</dd></div>
+            <div><dt><span class="status status-verified">Verified</span></dt><dd>Staff checked the food and are arranging pickup.</dd></div>
+            <div><dt><span class="status status-picked">Picked up</span></dt><dd>The food was collected and shared. Thank you!</dd></div>
+            <div><dt><span class="status status-info">Requires more info</span></dt><dd>Staff need something from you, like a clearer photo. Read their remarks on the Track page and send a reply there. Your report then goes back to Reported for another check.</dd></div>
+            <div><dt><span class="status status-rejected">Rejected</span></dt><dd>The food can't be shared, for example because it is past its best-before date. The remarks explain why.</dd></div>
+            <div><dt><span class="status status-duplicate">Duplicate</span></dt><dd>The same food was already reported. The remarks give the reference number of the first report.</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section" id="guidelines" aria-labelledby="guidelines-title">
+        <div class="container">
+          <div class="row gy-5">
+            <div class="col-lg-6">
+              <h2 class="section-title" id="guidelines-title">Reporting guidelines</h2>
+              <h3 class="side-title">Please report</h3>
+              <ul class="side-list">
+                <li>Cooked food that was kept covered and at a safe temperature</li>
+                <li>Fresh fruits, vegetables, bread and rice that are still good</li>
+                <li>Sealed canned and packaged goods before their best-before date</li>
+                <li>Only food you have the right to give away</li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="side-title">Please do not report</h3>
+              <ul class="side-list">
+                <li>Spoiled, expired or moldy food</li>
+                <li>Opened or partly eaten items</li>
+                <li>Food that was not stored safely</li>
+                <li>The same food twice. The site blocks duplicate reports and shows you the first reference number.</li>
+              </ul>
+              <p class="side-note">Reports with false information may be rejected, and staff may contact you about them.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ========== FOOTER (same as every page) ========== -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5">
+            <a class="brand brand-light" href="index.html">
+              <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" />
+              <path d="M8 13h16l-2 10H10z" />
+              <path d="M12 13l4-5 4 5" />
+            </svg>
+              Barangay Bagsakan
+            </a>
+            <p class="footer-tagline">Share food, not waste.</p>
+          </div>
+
+          <nav class="col-6 col-lg-3 offset-lg-1" aria-label="Footer: explore">
+            <h2 class="footer-heading">Explore</h2>
+            <ul class="footer-links">
+              <li><a href="about.html">About</a></li>
+              <li><a href="how-it-works.html">How it works</a></li>
+              <li><a href="report.html">Report surplus food</a></li>
+              <li><a href="track.html">Track a report</a></li>
+              <li><a href="register.html">Register</a></li>
+            </ul>
+          </nav>
+
+          <nav class="col-6 col-lg-3" aria-label="Footer: help">
+            <h2 class="footer-heading">Help</h2>
+            <ul class="footer-links">
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="privacy.html">Privacy policy</a></li>
+              <li><a href="how-it-works.html#guidelines">Reporting guidelines</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; <span id="year">2026</span> Barangay Bagsakan</p>
+          <p>For Web Development (WEBDEVT) demo purposes only.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
